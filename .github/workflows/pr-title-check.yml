@@ -1,0 +1,23 @@
+name: PR Title Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    permissions: 
+      pull-request: read
+    steps:
+      - name: Validate PR title format
+        run: |
+          TITLE="${{ github.event.pull_request.title }}"
+          REGEX='^\([A-Za-z]+-[0-9]+\) .+'
+          
+          if [[ ! "$TITLE" =~ $REGEX ]]; then
+            echo "❌ Invalid PR title format. Required format: '(XXX-XXX) PR Title'"
+            exit 1
+          else
+            echo "✅ PR title format is valid"
+          fi
