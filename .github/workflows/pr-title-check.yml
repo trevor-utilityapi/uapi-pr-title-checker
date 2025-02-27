@@ -8,7 +8,7 @@ jobs:
   check-title:
     runs-on: ubuntu-latest
     permissions: 
-      pull-request: read
+      pull_request: read
     steps:
       - name: Validate PR title format
         run: |
