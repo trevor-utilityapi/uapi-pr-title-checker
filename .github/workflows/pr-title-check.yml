@@ -4,11 +4,12 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
 
+permissions: 
+  pull-request: read
+
 jobs:
   check-title:
     runs-on: ubuntu-latest
-    permissions: 
-      pull_request: read
     steps:
       - name: Validate PR title format
         run: |
